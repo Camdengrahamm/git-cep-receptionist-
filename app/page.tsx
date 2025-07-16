@@ -1261,22 +1261,22 @@ export default function LandingPage() {
               <h4 className="text-sm font-bold text-gray-900">Product</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#features" className="link">
+                  <Link href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="#pricing" className="link">
+                  <Link href="#pricing" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Integrations
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     API
                   </Link>
                 </li>
@@ -1288,22 +1288,22 @@ export default function LandingPage() {
               <h4 className="text-sm font-bold text-gray-900">Resources</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Documentation
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Guides
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Support
                   </Link>
                 </li>
@@ -1315,22 +1315,22 @@ export default function LandingPage() {
               <h4 className="text-sm font-bold text-gray-900">Company</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#about" className="link">
+                  <Link href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Careers
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="link">
+                  <Link href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                     Terms of Service
                   </Link>
                 </li>
@@ -1342,20 +1342,13 @@ export default function LandingPage() {
             <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Curatix.ai. All rights reserved.</p>
             <div className="flex gap-4 text-xs">
               {["Privacy Policy", "Terms", "Cookies"].map((txt) => (
-                <Link key={txt} href="#" className="link">
+                <Link key={txt} href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
                   {txt}
                 </Link>
               ))}
             </div>
           </div>
         </div>
-
-        {/* utility class for footer links */}
-        <style jsx>{`
-    .link {
-      @apply text-gray-600 hover:text-gray-900 transition-colors;
-    }
-  `}</style>
       </footer>
     </div>
   )
