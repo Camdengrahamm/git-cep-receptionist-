@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Pure white background */
+    --foreground: 222 84% 4.9%; /* Dark text for contrast */
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 222 84% 4.9%; /* Dark card text */
+    --popover: 0 0% 100%; /* White popover */
+    --popover-foreground: 222 84% 4.9%; /* Dark popover text */
+    --primary: 200 100% 40%; /* Bright Curatix blue */
+    --primary-foreground: 0 0% 98%; /* White text on primary */
+    --secondary: 210 40% 96%; /* Very light gray secondary */
+    --secondary-foreground: 222 84% 4.9%; /* Dark secondary text */
+    --muted: 210 40% 96%; /* Light muted background */
+    --muted-foreground: 215 16% 46.9%; /* Medium gray text */
+    --accent: 210 40% 96%; /* Light accent */
+    --accent-foreground: 222 84% 4.9%; /* Dark accent text */
+    --destructive: 0 84.2% 60.2%; /* Bright red for errors */
+    --destructive-foreground: 0 0% 98%; /* White text on destructive */
+    --border: 214.3 31.8% 91.4%; /* Light border */
+    --input: 214.3 31.8% 91.4%; /* Light input border */
+    --ring: 200 100% 40%; /* Bright blue focus ring */
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 84% 4.9%; /* Dark background for dark mode */
+    --foreground: 0 0% 98%; /* Light text */
+    --card: 222 84% 4.9%; /* Dark cards */
+    --card-foreground: 0 0% 98%; /* Light card text */
+    --popover: 222 84% 4.9%; /* Dark popover */
+    --popover-foreground: 0 0% 98%; /* Light popover text */
+    --primary: 200 100% 50%; /* Brighter blue for dark mode */
+    --primary-foreground: 222 84% 4.9%; /* Dark text on primary */
+    --secondary: 217.2 32.6% 17.5%; /* Dark secondary */
+    --secondary-foreground: 0 0% 98%; /* Light secondary text */
+    --muted: 217.2 32.6% 17.5%; /* Dark muted */
+    --muted-foreground: 215 20.2% 65.1%; /* Light muted text */
+    --accent: 217.2 32.6% 17.5%; /* Dark accent */
+    --accent-foreground: 0 0% 98%; /* Light accent text */
+    --destructive: 0 62.8% 30.6%; /* Dark red */
+    --destructive-foreground: 0 0% 98%; /* Light text on destructive */
+    --border: 217.2 32.6% 17.5%; /* Dark border */
+    --input: 217.2 32.6% 17.5%; /* Dark input */
+    --ring: 200 100% 50%; /* Bright blue ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.animate-in {
+  animation: animate-in 0.5s ease-out;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
