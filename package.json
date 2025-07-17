@@ -11,7 +11,6 @@
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@radix-ui/react-accordion": "^1.1.2",
-    "@radix-ui/react-label": "^1.0.7",
     "@radix-ui/react-tabs": "^1.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
