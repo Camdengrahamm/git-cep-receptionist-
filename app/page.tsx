@@ -219,7 +219,9 @@ export default function LandingPage() {
             </Link>
             <Button
               className="rounded-full bg-blue-600 hover:bg-blue-700"
-              onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+              onClick={() =>
+                window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+              }
             >
               Get Started
               <ChevronRight className="ml-1 size-4" />
@@ -296,7 +298,9 @@ export default function LandingPage() {
               </Link>
               <Button
                 className="rounded-full bg-blue-600 hover:bg-blue-700"
-                onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                onClick={() =>
+                  window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                }
               >
                 Get Started
                 <ChevronRight className="ml-1 size-4" />
@@ -327,7 +331,9 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   className="rounded-full h-12 px-8 text-base bg-blue-600 hover:bg-blue-700"
-                  onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                  onClick={() =>
+                    window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                  }
                 >
                   Schedule Demo
                   <ArrowRight className="ml-2 size-4" />
@@ -626,7 +632,7 @@ export default function LandingPage() {
                 {
                   quote:
                     "Curatix has been a game-changer for our event sales. The AI-powered lead response is incredibly efficient, and our team can now focus on closing deals.",
-                  author: "Sarah L.",
+                  author: "Martin S.",
                   role: "Director of Events, Wabeek Club",
                   rating: 5,
                 },
@@ -788,7 +794,12 @@ export default function LandingPage() {
                             <Button
                               className={`w-full mt-auto rounded-full ${plan.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
                               variant={plan.popular ? "default" : "outline"}
-                              onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                              onClick={() =>
+                                window.open(
+                                  "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                                  "_blank",
+                                )
+                              }
                             >
                               {plan.cta}
                             </Button>
@@ -876,7 +887,12 @@ export default function LandingPage() {
                             <Button
                               className={`w-full mt-auto rounded-full ${plan.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
                               variant={plan.popular ? "default" : "outline"}
-                              onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                              onClick={() =>
+                                window.open(
+                                  "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                                  "_blank",
+                                )
+                              }
                             >
                               {plan.cta}
                             </Button>
@@ -993,7 +1009,9 @@ export default function LandingPage() {
                   size="lg"
                   variant="secondary"
                   className="rounded-full h-12 px-8 text-base bg-white text-blue-600 hover:bg-gray-100"
-                  onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                  onClick={() =>
+                    window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                  }
                 >
                   Request Demo
                   <ArrowRight className="ml-2 size-4" />
@@ -1002,12 +1020,13 @@ export default function LandingPage() {
                   size="lg"
                   variant="outline"
                   className="rounded-full h-12 px-8 text-base bg-transparent border-white text-white hover:bg-white/10"
-                  onClick={() => window.open("https://go.curatix.ai/home", "_blank")}
+                  onClick={() =>
+                    window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                  }
                 >
                   Schedule a Demo
                 </Button>
               </div>
-              <p className="text-sm text-blue-100 mt-4">No credit card required. 14-day free trial. Cancel anytime.</p>
             </motion.div>
           </div>
         </section>
@@ -1151,7 +1170,10 @@ export default function LandingPage() {
                       className="w-full rounded-full bg-blue-600 hover:bg-blue-700"
                       onClick={() => {
                         setShowROICalculator(false)
-                        window.open("https://go.curatix.ai/home", "_blank")
+                        window.open(
+                          "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                          "_blank",
+                        )
                       }}
                     >
                       Schedule Demo to Recover This Revenue
@@ -1216,7 +1238,7 @@ export default function LandingPage() {
                   className="rounded-full bg-blue-600 hover:bg-blue-700"
                   onClick={() => {
                     setShowStoryPopup(false)
-                    window.open("https://go.curatix.ai/home", "_blank")
+                    window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
                   }}
                 >
                   Schedule a Demo
