@@ -4,25 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import {
-  Check,
-  ChevronRight,
-  Menu,
-  X,
-  Moon,
-  Sun,
-  ArrowRight,
-  Star,
-  Zap,
-  Shield,
-  Users,
-  BarChart,
-  Layers,
-  Calculator,
-  Clock,
-  DollarSign,
-  TrendingUp,
-} from "lucide-react"
+import { Check, ChevronRight, Menu, X, Moon, Sun, ArrowRight, Star, Zap, Shield, Users, BarChart, Layers, Calculator, Clock, DollarSign, TrendingUp } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
@@ -127,7 +109,7 @@ export default function LandingPage() {
     {
       title: "Instant AI-Powered Lead Response",
       description:
-        "Qualify every lead, 24/7. Curatix responds instantly to event inquiries with personalized messages, ensuring no lead goes cold.",
+        "Qualify every lead, 24/7. CURATIX responds instantly to event inquiries with personalized messages, ensuring no lead goes cold.",
       icon: <Zap className="size-5" />,
     },
     {
@@ -139,7 +121,7 @@ export default function LandingPage() {
     {
       title: "Automated Booking Workflows",
       description:
-        "Automate your sales pipeline. Curatix automates follow-ups, reminders, and task creation, so deals never slip through the cracks.",
+        "Automate your sales pipeline. CURATIX automates follow-ups, reminders, and task creation, so deals never slip through the cracks.",
       icon: <Users className="size-5" />,
     },
     {
@@ -151,13 +133,13 @@ export default function LandingPage() {
     {
       title: "Calendar Integration & Scheduling",
       description:
-        "Let leads book tours and calls directly on your calendar. Curatix prevents double bookings and ensures your team's time is used efficiently.",
+        "Let leads book tours and calls directly on your calendar. CURATIX prevents double bookings and ensures your team's time is used efficiently.",
       icon: <Layers className="size-5" />,
     },
     {
       title: "AI Voice Bot for Discovery Calls",
       description:
-        "Qualify leads over the phone with our AI voice bot. Curatix asks the right questions and delivers qualified leads directly to your team.",
+        "Qualify leads over the phone with our AI voice bot. CURATIX asks the right questions and delivers qualified leads directly to your team.",
       icon: <Star className="size-5" />,
     },
   ]
@@ -181,8 +163,8 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 bg-white/95 shadow-sm border-b border-gray-100">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-gray-900">
-            <Image src="/images/curatix-logo-icon.png" alt="Curatix.AI" width={32} height={32} className="size-8" />
-            <span>Curatix.AI</span>
+            <Image src="/images/curatix-logo-icon.png" alt="CURATIX.AI" width={32} height={32} className="size-8" />
+            <span>CURATIX.AI</span>
           </div>
           <nav className="hidden md:flex gap-8">
             <Link href="#about" className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
@@ -214,7 +196,7 @@ export default function LandingPage() {
               {mounted && theme === "dark" ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Link href="#" className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
+            <Link href="https://app.curatix.ai" className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
               Log in
             </Link>
             <Button
@@ -290,7 +272,7 @@ export default function LandingPage() {
             </Link>
             <div className="flex flex-col gap-2 pt-2 border-t border-gray-200">
               <Link
-                href="#"
+                href="https://app.curatix.ai"
                 className="py-2 text-sm font-medium text-gray-600"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -324,7 +306,7 @@ export default function LandingPage() {
                 Let AI Handle Inquiries. You Focus on Closing.
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Curatix automates lead response, scheduling, and booking workflows for event-driven venues — so your
+                CURATIX automates lead response, scheduling, and booking workflows for event-driven venues — so your
                 team can stop chasing leads and start closing more business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -455,7 +437,7 @@ export default function LandingPage() {
               >
                 <Image
                   src="/images/about-curatix.png"
-                  alt="About Curatix.AI"
+                  alt="About CURATIX.AI"
                   width={600}
                   height={400}
                   className="w-full h-auto rounded-xl shadow-lg"
@@ -476,12 +458,11 @@ export default function LandingPage() {
                 </h2>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    At Curatix.ai, we believe that event teams shouldn't have to choose between running great events and
+                    At CURATIX.AI, we believe that event teams shouldn't have to choose between running great events and
                     chasing down leads.
                   </p>
                   <p>
-                    Founded by a team of sales and operations professionals in the club and hospitality space, Curatix
-                    was built to solve a common, expensive problem: too many event inquiries falling through the cracks.
+                    Founded by a team of sales and operations professionals in the club and hospitality space, CURATIX was built to solve a common, expensive problem: too many event inquiries falling through the cracks.
                   </p>
                   <p>
                     Our platform uses conversational AI, automated workflows, and real-time lead routing to curate every
@@ -575,7 +556,7 @@ export default function LandingPage() {
                   step: "01",
                   title: "Connect or Replace Your Inquiry Form",
                   description:
-                    "Integrate Curatix with your existing form, or use our custom-built form to capture qualified leads.",
+                    "Integrate CURATIX with your existing form, or use our custom-built form to capture qualified leads.",
                 },
                 {
                   step: "02",
@@ -631,7 +612,7 @@ export default function LandingPage() {
               {[
                 {
                   quote:
-                    "Curatix has been a game-changer for our event sales. The AI-powered lead response is incredibly efficient, and our team can now focus on closing deals.",
+                    "CURATIX has been a game-changer for our event sales. The AI-powered lead response is incredibly efficient, and our team can now focus on closing deals.",
                   author: "Martin S.",
                   role: "Director of Events, Wabeek Club",
                   rating: 5,
@@ -645,7 +626,7 @@ export default function LandingPage() {
                 },
                 {
                   quote:
-                    "The automated booking workflows have saved us countless hours of manual work. Curatix has streamlined our processes and improved our overall efficiency.",
+                    "CURATIX has streamlined our processes and improved our overall efficiency.",
                   author: "Emily T.",
                   role: "Sales Manager, Fairway Oaks",
                   rating: 5,
@@ -930,14 +911,14 @@ export default function LandingPage() {
               <Accordion type="single" collapsible className="w-full">
                 {[
                   {
-                    question: "How does Curatix automate lead response?",
+                    question: "How does CURATIX automate lead response?",
                     answer:
-                      "Curatix uses AI to instantly respond to event inquiries with personalized messages, ensuring no lead goes cold. Our system qualifies leads 24/7, allowing your team to focus on closing deals.",
+                      "CURATIX uses AI to instantly respond to event inquiries with personalized messages, ensuring no lead goes cold. Our system qualifies leads 24/7, allowing your team to focus on closing deals.",
                   },
                   {
-                    question: "Can Curatix integrate with my existing CRM?",
+                    question: "Can CURATIX integrate with my existing CRM?",
                     answer:
-                      "Yes, Curatix can integrate with your existing CRM. We also offer a purpose-built platform designed specifically for events, which you can use as a standalone solution or integrate with other tools.",
+                      "Yes, CURATIX can integrate with your existing CRM. We also offer a purpose-built platform designed specifically for events, which you can use as a standalone solution or integrate with other tools.",
                   },
                   {
                     question: "What kind of support do you offer?",
@@ -952,12 +933,12 @@ export default function LandingPage() {
                   {
                     question: "Is there a limit to how many users I can add?",
                     answer:
-                      "There is no limit to the number of users you can add to your Curatix account. You can add as many team members as you need to manage your event sales.",
+                      "There is no limit to the number of users you can add to your CURATIX account. You can add as many team members as you need to manage your event sales.",
                   },
                   {
-                    question: "What types of venues is Curatix built for?",
+                    question: "What types of venues is CURATIX built for?",
                     answer:
-                      "Curatix is built for private clubs, event venues, and hospitality teams. Our platform is designed to automate lead response, scheduling, and booking workflows for event-driven businesses.",
+                      "CURATIX is built for private clubs, event venues, and hospitality teams. Our platform is designed to automate lead response, scheduling, and booking workflows for event-driven businesses.",
                   },
                 ].map((faq, i) => (
                   <motion.div
@@ -1204,7 +1185,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 mb-6">
                 <Image
                   src="/images/curatix-logo-icon.png"
-                  alt="Curatix.AI"
+                  alt="CURATIX.AI"
                   width={40}
                   height={40}
                   className="size-10"
@@ -1212,19 +1193,19 @@ export default function LandingPage() {
                 <h3 className="text-2xl font-bold text-gray-900">Our Story</h3>
               </div>
               <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>Curatix was founded with one goal: to make event inquiry management effortless for private clubs.</p>
+                <p>CURATIX was founded with one goal: to make event inquiry management effortless for private clubs.</p>
                 <p>
                   After years of working in membership sales, our founder recognized a growing gap on the events
                   side—clubs were missing opportunities simply because they lacked the systems to respond quickly,
                   qualify leads, and follow up effectively.
                 </p>
                 <p>
-                  That's where Curatix comes in. We built an AI-powered platform designed specifically for private
+                  That's where CURATIX comes in. We built an AI-powered platform designed specifically for private
                   clubs, combining smart forms, instant lead response, and automated booking workflows—all integrated
                   with your existing CRM or ours.
                 </p>
                 <p>
-                  Whether you're managing weddings, banquets, or golf outings, Curatix turns event inquiries into
+                  Whether you're managing weddings, banquets, or golf outings, CURATIX turns event inquiries into
                   confirmed bookings—without the manual work.
                 </p>
                 <p className="font-medium text-gray-900">
@@ -1256,8 +1237,8 @@ export default function LandingPage() {
             {/* column 1 */}
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2 font-bold text-gray-900">
-                <Image src="/images/curatix-logo-icon.png" alt="Curatix.AI" width={32} height={32} />
-                Curatix.ai
+                <Image src="/images/curatix-logo-icon.png" alt="CURATIX.AI" width={32} height={32} />
+                CURATIX.AI
               </Link>
               <p className="text-sm text-gray-600">
                 Automate your event sales with our AI-powered platform. Stop chasing leads and start closing more
@@ -1361,7 +1342,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between border-t border-gray-200 pt-8">
-            <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Curatix.ai. All rights reserved.</p>
+            <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} CURATIX.AI. All rights reserved.</p>
             <div className="flex gap-4 text-xs">
               {["Privacy Policy", "Terms", "Cookies"].map((txt) => (
                 <Link key={txt} href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
