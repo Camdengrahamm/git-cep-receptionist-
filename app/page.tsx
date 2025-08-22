@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import {
   Check,
   ChevronRight,
@@ -28,6 +27,7 @@ import {
   Utensils,
   Building2,
   HeadphonesIcon,
+  Copy,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -45,6 +45,8 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("clubs")
   const [showROICalculator, setShowROICalculator] = useState(false)
   const [showStoryPopup, setShowStoryPopup] = useState(false)
+  const [showPhonePopup, setShowPhonePopup] = useState(false)
+  const [phoneCopied, setPhoneCopied] = useState(false)
 
   // ROI Calculator state
   const [monthlyInquiries, setMonthlyInquiries] = useState(50)
@@ -96,6 +98,12 @@ export default function LandingPage() {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  const copyPhoneNumber = () => {
+    navigator.clipboard.writeText("(248) 289-9969")
+    setPhoneCopied(true)
+    setTimeout(() => setPhoneCopied(false), 2000)
+  }
+
   // ROI Calculations
   const calculateROI = () => {
     const missedOpportunities = Math.floor(monthlyInquiries * 0.3) // 30% missed due to slow response
@@ -112,21 +120,6 @@ export default function LandingPage() {
   }
 
   const roiResults = calculateROI()
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  }
 
   // Content for different tabs
   const getTabContent = () => {
@@ -188,12 +181,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-3xl mx-auto mb-12"
-            >
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-gray-900">
                 Let AI Handle Inquiries. You Focus on Closing.
               </h1>
@@ -225,14 +213,9 @@ export default function LandingPage() {
               <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
                 <span>Built for private clubs, event venues, and hospitality teams.</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative mx-auto max-w-5xl"
-            >
+            <div className="relative mx-auto max-w-5xl">
               <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
                 <Image
                   src="https://cdn.dribbble.com/userupload/12302729/file/original-fa372845e394ee85bebe0389b9d86871.png?resize=1504x1128&vertical=center"
@@ -243,7 +226,7 @@ export default function LandingPage() {
                   priority
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -320,13 +303,7 @@ export default function LandingPage() {
         {/* Features Section */}
         <section id="features" className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">Features</Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Built to Automate Your Event Sales — End to End
@@ -335,42 +312,28 @@ export default function LandingPage() {
                 We can integrate with your existing CRM, or you can use our purpose-built platform designed specifically
                 for events.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((feature, i) => (
-                <motion.div key={i} variants={item}>
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
         <section id="testimonials" className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">
                 Testimonials
               </Badge>
@@ -378,7 +341,7 @@ export default function LandingPage() {
               <p className="max-w-[800px] text-gray-600 md:text-lg">
                 Don't just take our word for it. See what our customers have to say about their experience.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -403,35 +366,27 @@ export default function LandingPage() {
                   rating: 5,
                 },
               ].map((testimonial, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                >
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex mb-4">
-                        {Array(testimonial.rating)
-                          .fill(0)
-                          .map((_, j) => (
-                            <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
-                          ))}
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex mb-4">
+                      {Array(testimonial.rating)
+                        .fill(0)
+                        .map((_, j) => (
+                          <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
+                        ))}
+                    </div>
+                    <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
+                    <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
+                      <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
+                        {testimonial.author.charAt(0)}
                       </div>
-                      <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
-                      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
-                        <div className="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
-                          {testimonial.author.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-900">{testimonial.author}</p>
-                          <p className="text-sm text-gray-500">{testimonial.role}</p>
-                        </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{testimonial.author}</p>
+                        <p className="text-sm text-gray-500">{testimonial.role}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -440,13 +395,7 @@ export default function LandingPage() {
         {/* Pricing Section */}
         <section id="pricing" className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">Pricing</Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Straightforward Pricing. No Guesswork.
@@ -454,7 +403,7 @@ export default function LandingPage() {
               <p className="max-w-[800px] text-gray-600 md:text-lg">
                 Choose the plan that's right for your business. All plans include a 14-day free trial.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
               {[
@@ -494,52 +443,45 @@ export default function LandingPage() {
                   cta: "Contact Sales",
                 },
               ].map((plan, i) => (
-                <motion.div
+                <Card
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`relative overflow-hidden h-full ${plan.popular ? "border-blue-500 shadow-lg ring-2 ring-blue-500/20" : "border-gray-200 shadow-sm"} bg-white`}
                 >
-                  <Card
-                    className={`relative overflow-hidden h-full ${plan.popular ? "border-blue-500 shadow-lg ring-2 ring-blue-500/20" : "border-gray-200 shadow-sm"} bg-white`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
-                        Most Popular
-                      </div>
-                    )}
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
-                      <div className="flex items-baseline mt-4">
-                        <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                        <span className="text-gray-500 ml-1">/month</span>
-                      </div>
-                      <p className="text-gray-600 mt-2">{plan.description}</p>
-                      <p className="text-gray-600 mt-2">{plan.upfront} upfront</p>
-                      <ul className="space-y-3 my-6 flex-grow">
-                        {plan.features.map((feature, j) => (
-                          <li key={j} className="flex items-center">
-                            <Check className="mr-2 size-4 text-blue-600" />
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Button
-                        className={`w-full mt-auto rounded-full ${plan.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
-                        variant={plan.popular ? "default" : "outline"}
-                        onClick={() =>
-                          window.open(
-                            "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
-                            "_blank",
-                          )
-                        }
-                      >
-                        {plan.cta}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  {plan.popular && (
+                    <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
+                      Most Popular
+                    </div>
+                  )}
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                    <div className="flex items-baseline mt-4">
+                      <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                      <span className="text-gray-500 ml-1">/month</span>
+                    </div>
+                    <p className="text-gray-600 mt-2">{plan.description}</p>
+                    <p className="text-gray-600 mt-2">{plan.upfront} upfront</p>
+                    <ul className="space-y-3 my-6 flex-grow">
+                      {plan.features.map((feature, j) => (
+                        <li key={j} className="flex items-center">
+                          <Check className="mr-2 size-4 text-blue-600" />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      className={`w-full mt-auto rounded-full ${plan.popular ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
+                      variant={plan.popular ? "default" : "outline"}
+                      onClick={() =>
+                        window.open(
+                          "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                          "_blank",
+                        )
+                      }
+                    >
+                      {plan.cta}
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -589,12 +531,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden bg-gradient-to-br from-orange-50 to-red-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-3xl mx-auto mb-12"
-            >
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-gray-900">
                 Let AI Turn Every Guest Into a Regular.
               </h1>
@@ -626,7 +563,7 @@ export default function LandingPage() {
               <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
                 <span>Built for restaurants, cafés, bars and hospitality teams.</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -635,7 +572,7 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-red-900 mb-4">
-                The Hidden Cost of Ignoring Your Guests
+                Reviews Build Trust. Trust Fills Tables.
               </h2>
               <p className="text-lg text-red-700 max-w-2xl mx-auto">
                 Every missed follow-up is a lost opportunity for loyalty and reviews.
@@ -677,17 +614,6 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
             </div>
-
-            <div className="text-center mt-12">
-              <Button
-                size="lg"
-                className="rounded-full bg-red-600 hover:bg-red-700 text-white"
-                onClick={() => setShowROICalculator(true)}
-              >
-                <Calculator className="mr-2 size-4" />
-                Calculate Your Losses
-              </Button>
-            </div>
           </div>
         </section>
 
@@ -715,13 +641,7 @@ export default function LandingPage() {
         {/* Features Section */}
         <section className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-orange-100 text-orange-800">
                 Features
               </Badge>
@@ -732,47 +652,33 @@ export default function LandingPage() {
                 We can integrate with your existing POS and reservation system, or you can use our purpose-built
                 platform.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((feature, i) => (
-                <motion.div key={i} variants={item}>
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-4">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
         <section className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-orange-100 text-orange-800">
                 Testimonials
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Loved by Restaurants</h2>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -797,35 +703,27 @@ export default function LandingPage() {
                   rating: 5,
                 },
               ].map((testimonial, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                >
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex mb-4">
-                        {Array(testimonial.rating)
-                          .fill(0)
-                          .map((_, j) => (
-                            <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
-                          ))}
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex mb-4">
+                      {Array(testimonial.rating)
+                        .fill(0)
+                        .map((_, j) => (
+                          <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
+                        ))}
+                    </div>
+                    <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
+                    <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
+                      <div className="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-medium">
+                        {testimonial.author.charAt(0)}
                       </div>
-                      <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
-                      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
-                        <div className="size-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-medium">
-                          {testimonial.author.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-900">{testimonial.author}</p>
-                          <p className="text-sm text-gray-500">{testimonial.role}</p>
-                        </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{testimonial.author}</p>
+                        <p className="text-sm text-gray-500">{testimonial.role}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -834,20 +732,14 @@ export default function LandingPage() {
         {/* Pricing Section */}
         <section className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-orange-100 text-orange-800">
                 Pricing
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Straightforward Pricing. No Guesswork.
               </h2>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
               {[
@@ -880,51 +772,44 @@ export default function LandingPage() {
                   cta: "Contact Sales",
                 },
               ].map((plan, i) => (
-                <motion.div
+                <Card
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`relative overflow-hidden h-full ${plan.popular ? "border-orange-500 shadow-lg ring-2 ring-orange-500/20" : "border-gray-200 shadow-sm"} bg-white`}
                 >
-                  <Card
-                    className={`relative overflow-hidden h-full ${plan.popular ? "border-orange-500 shadow-lg ring-2 ring-orange-500/20" : "border-gray-200 shadow-sm"} bg-white`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute top-0 right-0 bg-orange-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
-                        Most Popular
-                      </div>
-                    )}
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
-                      <div className="flex items-baseline mt-4">
-                        <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                        {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
-                      </div>
-                      <p className="text-gray-600 mt-2">{plan.description}</p>
-                      <ul className="space-y-3 my-6 flex-grow">
-                        {plan.features.map((feature, j) => (
-                          <li key={j} className="flex items-center">
-                            <Check className="mr-2 size-4 text-orange-600" />
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Button
-                        className={`w-full mt-auto rounded-full ${plan.popular ? "bg-orange-600 hover:bg-orange-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
-                        variant={plan.popular ? "default" : "outline"}
-                        onClick={() =>
-                          window.open(
-                            "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
-                            "_blank",
-                          )
-                        }
-                      >
-                        {plan.cta}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  {plan.popular && (
+                    <div className="absolute top-0 right-0 bg-orange-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
+                      Most Popular
+                    </div>
+                  )}
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                    <div className="flex items-baseline mt-4">
+                      <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                      {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
+                    </div>
+                    <p className="text-gray-600 mt-2">{plan.description}</p>
+                    <ul className="space-y-3 my-6 flex-grow">
+                      {plan.features.map((feature, j) => (
+                        <li key={j} className="flex items-center">
+                          <Check className="mr-2 size-4 text-orange-600" />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      className={`w-full mt-auto rounded-full ${plan.popular ? "bg-orange-600 hover:bg-orange-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
+                      variant={plan.popular ? "default" : "outline"}
+                      onClick={() =>
+                        window.open(
+                          "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                          "_blank",
+                        )
+                      }
+                    >
+                      {plan.cta}
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -973,12 +858,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden bg-gradient-to-br from-green-50 to-teal-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-3xl mx-auto mb-12"
-            >
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-gray-900">
                 Stop Missing Calls. Start Booking Business.
               </h1>
@@ -1001,6 +881,7 @@ export default function LandingPage() {
                   size="lg"
                   variant="outline"
                   className="rounded-full h-12 px-8 text-base border-green-200 text-green-700 hover:bg-green-50 bg-transparent"
+                  onClick={() => setShowPhonePopup(true)}
                 >
                   <Phone className="mr-2 size-4" />
                   See How It Works
@@ -1011,7 +892,7 @@ export default function LandingPage() {
                   Perfect for clinics, salons, repair shops, professional services and any appointment-based business.
                 </span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -1054,17 +935,6 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
             </div>
-
-            <div className="text-center mt-12">
-              <Button
-                size="lg"
-                className="rounded-full bg-red-600 hover:bg-red-700 text-white"
-                onClick={() => setShowROICalculator(true)}
-              >
-                <Calculator className="mr-2 size-4" />
-                Calculate Your Lost Opportunities
-              </Button>
-            </div>
           </div>
         </section>
 
@@ -1092,62 +962,42 @@ export default function LandingPage() {
         {/* Features Section */}
         <section className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-800">
                 Features
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Always-On Reception, Powered by AI
               </h2>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((feature, i) => (
-                <motion.div key={i} variants={item}>
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
         <section className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-800">
                 Testimonials
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Loved by Businesses That Can't Afford to Miss a Call
               </h2>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -1172,35 +1022,27 @@ export default function LandingPage() {
                   rating: 5,
                 },
               ].map((testimonial, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                >
-                  <Card className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex mb-4">
-                        {Array(testimonial.rating)
-                          .fill(0)
-                          .map((_, j) => (
-                            <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
-                          ))}
+                <Card key={i} className="h-full bg-white border-gray-200 shadow-sm hover:shadow-md transition-all">
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex mb-4">
+                      {Array(testimonial.rating)
+                        .fill(0)
+                        .map((_, j) => (
+                          <Star key={j} className="size-4 text-yellow-500 fill-yellow-500" />
+                        ))}
+                    </div>
+                    <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
+                    <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
+                      <div className="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-medium">
+                        {testimonial.author.charAt(0)}
                       </div>
-                      <p className="text-lg mb-6 flex-grow text-gray-700">{testimonial.quote}</p>
-                      <div className="flex items-center gap-4 mt-auto pt-4 border-t border-gray-100">
-                        <div className="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-medium">
-                          {testimonial.author.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-900">{testimonial.author}</p>
-                          <p className="text-sm text-gray-500">{testimonial.role}</p>
-                        </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{testimonial.author}</p>
+                        <p className="text-sm text-gray-500">{testimonial.role}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -1209,18 +1051,12 @@ export default function LandingPage() {
         {/* Pricing Section */}
         <section className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-green-100 text-green-800">
                 Pricing
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Plans That Scale With You</h2>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
               {[
@@ -1265,51 +1101,44 @@ export default function LandingPage() {
                   cta: "Talk to Sales",
                 },
               ].map((plan, i) => (
-                <motion.div
+                <Card
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`relative overflow-hidden h-full ${plan.popular ? "border-green-500 shadow-lg ring-2 ring-green-500/20" : "border-gray-200 shadow-sm"} bg-white`}
                 >
-                  <Card
-                    className={`relative overflow-hidden h-full ${plan.popular ? "border-green-500 shadow-lg ring-2 ring-green-500/20" : "border-gray-200 shadow-sm"} bg-white`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
-                        Most Popular
-                      </div>
-                    )}
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
-                      <div className="flex items-baseline mt-4">
-                        <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                        {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
-                      </div>
-                      <p className="text-gray-600 mt-2">{plan.description}</p>
-                      <ul className="space-y-3 my-6 flex-grow">
-                        {plan.features.map((feature, j) => (
-                          <li key={j} className="flex items-center">
-                            <Check className="mr-2 size-4 text-green-600" />
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <Button
-                        className={`w-full mt-auto rounded-full ${plan.popular ? "bg-green-600 hover:bg-green-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
-                        variant={plan.popular ? "default" : "outline"}
-                        onClick={() =>
-                          window.open(
-                            "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
-                            "_blank",
-                          )
-                        }
-                      >
-                        {plan.cta}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  {plan.popular && (
+                    <div className="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 text-xs font-medium rounded-bl-lg">
+                      Most Popular
+                    </div>
+                  )}
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                    <div className="flex items-baseline mt-4">
+                      <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                      {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
+                    </div>
+                    <p className="text-gray-600 mt-2">{plan.description}</p>
+                    <ul className="space-y-3 my-6 flex-grow">
+                      {plan.features.map((feature, j) => (
+                        <li key={j} className="flex items-center">
+                          <Check className="mr-2 size-4 text-green-600" />
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      className={`w-full mt-auto rounded-full ${plan.popular ? "bg-green-600 hover:bg-green-700" : "bg-gray-100 hover:bg-gray-200 text-gray-900"}`}
+                      variant={plan.popular ? "default" : "outline"}
+                      onClick={() =>
+                        window.open(
+                          "https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true",
+                          "_blank",
+                        )
+                      }
+                    >
+                      {plan.cta}
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -1350,7 +1179,7 @@ export default function LandingPage() {
               }`}
             >
               <Building2 className="size-4" />
-              Clubs
+              Event Spaces
             </button>
             <button
               onClick={() => setActiveTab("restaurants")}
@@ -1418,12 +1247,7 @@ export default function LandingPage() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-16 inset-x-0 bg-white/95 backdrop-blur-lg border-b border-gray-200 z-40"
-        >
+        <div className="md:hidden absolute top-16 inset-x-0 bg-white/95 backdrop-blur-lg border-b border-gray-200 z-40 transition-all duration-300">
           <div className="container py-4 flex flex-col gap-4">
             <button
               onClick={() => {
@@ -1435,7 +1259,7 @@ export default function LandingPage() {
               }`}
             >
               <Building2 className="size-4" />
-              Clubs
+              Event Spaces
             </button>
             <button
               onClick={() => {
@@ -1480,7 +1304,7 @@ export default function LandingPage() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
 
       <main className="flex-1">
@@ -1490,12 +1314,7 @@ export default function LandingPage() {
         <section id="about" className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
+              <div>
                 <Image
                   src="/images/about-curatix.png"
                   alt="About CURATIX.AI"
@@ -1503,14 +1322,8 @@ export default function LandingPage() {
                   height={400}
                   className="w-full h-auto rounded-xl shadow-lg"
                 />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="space-y-6"
-              >
+              </div>
+              <div className="space-y-6">
                 <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">
                   About Us
                 </Badge>
@@ -1541,7 +1354,7 @@ export default function LandingPage() {
                   Learn More About Our Story
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -1549,13 +1362,7 @@ export default function LandingPage() {
         {/* How It Works Section - Shared */}
         <section className="w-full py-20 md:py-32 bg-gray-50">
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">
                 How It Works
               </Badge>
@@ -1565,7 +1372,7 @@ export default function LandingPage() {
               <p className="max-w-[800px] text-gray-600 md:text-lg">
                 Get started in minutes and see the difference our platform can make for your business.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
               <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-blue-200 to-transparent -translate-y-1/2 z-0"></div>
@@ -1630,20 +1437,13 @@ export default function LandingPage() {
                 }
                 return steps[activeTab] || steps.clubs
               })().map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative z-10 flex flex-col items-center text-center space-y-4"
-                >
+                <div key={i} className="relative z-10 flex flex-col items-center text-center space-y-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white text-xl font-bold shadow-lg">
                     {step.step}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -1652,13 +1452,7 @@ export default function LandingPage() {
         {/* FAQ Section - Shared */}
         <section id="faq" className="w-full py-20 md:py-32 bg-white">
           <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
-            >
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800">FAQ</Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
                 Frequently Asked Questions
@@ -1666,7 +1460,7 @@ export default function LandingPage() {
               <p className="max-w-[800px] text-gray-600 md:text-lg">
                 Find answers to common questions about our platform.
               </p>
-            </motion.div>
+            </div>
 
             <div className="mx-auto max-w-3xl">
               <Accordion type="single" collapsible className="w-full">
@@ -1771,13 +1565,7 @@ export default function LandingPage() {
                   }
                   return faqs[activeTab] || faqs.clubs
                 })().map((faq, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                  >
+                  <div key={i}>
                     <AccordionItem
                       value={`item-${i}`}
                       className="border-b border-gray-200 py-2 bg-white rounded-lg mb-2 px-4"
@@ -1787,7 +1575,7 @@ export default function LandingPage() {
                       </AccordionTrigger>
                       <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
                     </AccordionItem>
-                  </motion.div>
+                  </div>
                 ))}
               </Accordion>
             </div>
@@ -1801,13 +1589,7 @@ export default function LandingPage() {
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
           <div className="container px-4 md:px-6 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-6 text-center"
-            >
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
                 {(() => {
                   const headlines = {
@@ -1845,7 +1627,7 @@ export default function LandingPage() {
                   {activeTab === "receptionist" ? "Talk to Sales" : "Schedule a Demo"}
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
@@ -2005,6 +1787,64 @@ export default function LandingPage() {
         </div>
       )}
 
+      {/* Phone Number Popup Modal */}
+      {showPhonePopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowPhonePopup(false)}
+            >
+              <X className="size-6" />
+              <span className="sr-only">Close</span>
+            </Button>
+            <div className="p-8 text-center">
+              <div className="flex items-center justify-center mb-6">
+                <div className="size-16 rounded-full bg-green-100 flex items-center justify-center">
+                  <Phone className="size-8 text-green-600" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Call Our AI Receptionist</h3>
+              <p className="text-gray-600 mb-6">
+                Experience CURATIX in action! Call our demo line to see how our AI receptionist handles calls.
+              </p>
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl font-bold text-gray-900 font-mono">(248) 289-9969</span>
+                  <Button variant="outline" size="sm" onClick={copyPhoneNumber} className="ml-2 bg-transparent">
+                    {phoneCopied ? <Check className="size-4 text-green-600" /> : <Copy className="size-4" />}
+                  </Button>
+                </div>
+                {phoneCopied && <p className="text-sm text-green-600 mt-2">Phone number copied!</p>}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  size="lg"
+                  className="flex-1 rounded-full bg-green-600 hover:bg-green-700"
+                  onClick={() => window.open("tel:(248) 289-9969")}
+                >
+                  <Phone className="mr-2 size-4" />
+                  Call Now
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="flex-1 rounded-full border-green-200 text-green-700 hover:bg-green-50 bg-transparent"
+                  onClick={() => {
+                    setShowPhonePopup(false)
+                    window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                  }}
+                >
+                  Schedule Demo
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Story Popup Modal */}
       {showStoryPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
@@ -2106,7 +1946,7 @@ export default function LandingPage() {
                     onClick={() => setActiveTab("clubs")}
                     className="text-gray-600 hover:text-gray-900 transition-colors"
                   >
-                    Clubs & Events
+                    Event Spaces
                   </button>
                 </li>
                 <li>
