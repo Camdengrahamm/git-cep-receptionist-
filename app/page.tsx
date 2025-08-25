@@ -214,19 +214,6 @@ export default function LandingPage() {
                 <span>Built for private clubs, event venues, and hospitality teams.</span>
               </div>
             </div>
-
-            <div className="relative mx-auto max-w-5xl">
-              <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
-                <Image
-                  src="https://cdn.dribbble.com/userupload/12302729/file/original-fa372845e394ee85bebe0389b9d86871.png?resize=1504x1128&vertical=center"
-                  width={1280}
-                  height={720}
-                  alt="CURATIX dashboard"
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-            </div>
           </div>
         </section>
 
