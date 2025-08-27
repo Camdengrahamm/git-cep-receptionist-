@@ -217,6 +217,63 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Dashboard Showcase Section */}
+        <section className="w-full py-20 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="text-center mb-12">
+              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-blue-100 text-blue-800 mb-4">
+                Platform Preview
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                See Your Event Business in Real-Time
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Track every lead, monitor your pipeline, and watch your revenue grow with CURATIX's comprehensive
+                dashboard.
+              </p>
+            </div>
+
+            <div className="space-y-8 max-w-6xl mx-auto">
+              {/* Main Dashboard */}
+              <div className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%205-14-25%20at%202.23%E2%80%AFPM-2NbMiv345uycnrIpfCrAiqSyQVeiTA.jpeg"
+                  width={1200}
+                  height={600}
+                  alt="CURATIX Dashboard - Track events, conversion rates, revenue, and recent activity in one comprehensive view"
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+
+              {/* Sales Pipeline */}
+              <div className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%205-16-25%20at%209.07%E2%80%AFAM-oj5sJJdAArEZ0uWQ1rPOw4m56tEEfc.jpeg"
+                  width={1200}
+                  height={400}
+                  alt="CURATIX Sales Pipeline - Kanban-style board showing event progression from inquiry to paid contract"
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Button
+                size="lg"
+                className="rounded-full bg-blue-600 hover:bg-blue-700"
+                onClick={() =>
+                  window.open("https://app.gohighlevel.com/v2/preview/ZAw8lYgc8bnST5DPa535?notrack=true", "_blank")
+                }
+              >
+                See It In Action
+                <ArrowRight className="ml-2 size-4" />
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Cost of Inaction Section */}
         <section className="w-full py-20 bg-red-50 border-y border-red-100">
           <div className="container px-4 md:px-6">
