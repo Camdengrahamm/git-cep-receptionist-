@@ -18,7 +18,6 @@ import {
   BarChart,
   Layers,
   Calculator,
-  Clock,
   DollarSign,
   TrendingUp,
   Phone,
@@ -55,7 +54,7 @@ export default function LandingPage() {
   const [conversionRate, setConversionRate] = useState(15)
 
   // Countdown timer state
-  const [timeLeft, setTimeLeft] = useState({
+  const [/*timeLeft*/ /*setTimeLeft*/ ,] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
@@ -73,7 +72,7 @@ export default function LandingPage() {
     }
 
     // Set countdown to 7 days from now
-    const countdownDate = new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+    /*const countdownDate = new Date().getTime() + 7 * 24 * 60 * 60 * 1000
 
     const timer = setInterval(() => {
       const now = new Date().getTime()
@@ -85,12 +84,12 @@ export default function LandingPage() {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000),
       })
-    }, 1000)
+    }, 1000)*/
 
     window.addEventListener("scroll", handleScroll)
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      clearInterval(timer)
+      /*clearInterval(timer)*/
     }
   }, [])
 
@@ -454,7 +453,7 @@ export default function LandingPage() {
                 {
                   name: "Basic",
                   price: "$299",
-                  upfront: "$1,500",
+                  setup: "$1,500 setup fee",
                   description: "Perfect for venues just getting started with automation.",
                   features: ["AI Lead Response", "Smart Event Inquiry Form", "Basic CRM Dashboard", "Email Support"],
                   cta: "Request Demo",
@@ -462,7 +461,7 @@ export default function LandingPage() {
                 {
                   name: "Professional",
                   price: "$699",
-                  upfront: "$2,000",
+                  setup: "$2,000 setup fee",
                   description: "Ideal for growing venues looking to scale their event sales.",
                   features: [
                     "Everything in Basic",
@@ -476,7 +475,7 @@ export default function LandingPage() {
                 {
                   name: "Enterprise",
                   price: "$899",
-                  upfront: "$2,000",
+                  setup: "$2,000 setup fee",
                   description: "For large venues and private clubs with complex needs.",
                   features: [
                     "Everything in Professional",
@@ -503,7 +502,7 @@ export default function LandingPage() {
                       <span className="text-gray-500 ml-1">/month</span>
                     </div>
                     <p className="text-gray-600 mt-2">{plan.description}</p>
-                    <p className="text-gray-600 mt-2">{plan.upfront} upfront</p>
+                    <p className="text-gray-600 mt-2">{plan.setup}</p>
                     <ul className="space-y-3 my-6 flex-grow">
                       {plan.features.map((feature, j) => (
                         <li key={j} className="flex items-center">
@@ -793,6 +792,7 @@ export default function LandingPage() {
                   description: "Small venues starting with automation.",
                   features: ["AI Guest Follow-Up", "Weekly Specials", "Basic CRM Dashboard", "Email Support"],
                   cta: "Request Demo",
+                  setup: "$1,000 setup fee",
                 },
                 {
                   name: "Basic",
@@ -807,6 +807,7 @@ export default function LandingPage() {
                   ],
                   cta: "Request Demo",
                   popular: true,
+                  setup: "$1,000 setup fee",
                 },
                 {
                   name: "Enterprise",
@@ -814,6 +815,7 @@ export default function LandingPage() {
                   description: "Multi-location groups or chains.",
                   features: ["Everything in Basic", "AI Phone & Chat Bot", "Custom Integrations", "24/7 Support"],
                   cta: "Contact Sales",
+                  setup: "Custom setup fee",
                 },
               ].map((plan, i) => (
                 <Card
@@ -832,6 +834,7 @@ export default function LandingPage() {
                       {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
                     </div>
                     <p className="text-gray-600 mt-2">{plan.description}</p>
+                    <p className="text-gray-600 mt-2">{plan.setup}</p>
                     <ul className="space-y-3 my-6 flex-grow">
                       {plan.features.map((feature, j) => (
                         <li key={j} className="flex items-center">
@@ -1116,6 +1119,7 @@ export default function LandingPage() {
                     "Additional minutes at $0.30/min",
                   ],
                   cta: "Request Demo",
+                  setup: "$1,000 setup fee",
                 },
                 {
                   name: "Professional",
@@ -1130,6 +1134,7 @@ export default function LandingPage() {
                   ],
                   cta: "Request Demo",
                   popular: true,
+                  setup: "$1,000 setup fee",
                 },
                 {
                   name: "Enterprise",
@@ -1143,6 +1148,7 @@ export default function LandingPage() {
                     "24/7 Phone & Email Support",
                   ],
                   cta: "Talk to Sales",
+                  setup: "Custom setup fee",
                 },
               ].map((plan, i) => (
                 <Card
@@ -1161,6 +1167,7 @@ export default function LandingPage() {
                       {plan.price !== "Custom" && <span className="text-gray-500 ml-1">/month</span>}
                     </div>
                     <p className="text-gray-600 mt-2">{plan.description}</p>
+                    <p className="text-gray-600 mt-2">{plan.setup}</p>
                     <ul className="space-y-3 my-6 flex-grow">
                       {plan.features.map((feature, j) => (
                         <li key={j} className="flex items-center">
@@ -1194,7 +1201,7 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col bg-gray-50">
       {/* Countdown Banner */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2 px-4 text-center text-sm">
+      {/*<div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2 px-4 text-center text-sm">
         <div className="flex items-center justify-center gap-4">
           <Clock className="size-4" />
           <span className="font-medium">Limited Time: Free Implementation & Setup</span>
@@ -1205,7 +1212,7 @@ export default function LandingPage() {
             <span>{timeLeft.seconds}s</span>
           </div>
         </div>
-      </div>
+      </div>*/}
 
       <header className="sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 bg-white/95 shadow-sm border-b border-gray-100">
         <div className="container flex h-16 items-center justify-between">
