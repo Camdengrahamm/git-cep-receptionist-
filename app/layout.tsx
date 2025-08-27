@@ -7,8 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SaaSify - Streamline Your Workflow",
-  description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
+  title: "CURATIX.AI - Automate Your Business with AI",
+  description:
+    "Stop chasing leads and start closing more business. CURATIX automates lead response, scheduling, and workflows for event spaces, restaurants, and service businesses.",
     generator: 'v0.app'
 }
 
