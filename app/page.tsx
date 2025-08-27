@@ -1217,7 +1217,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 bg-white/95 shadow-sm border-b border-gray-100">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-gray-900">
-            <Image src="/images/curatix-logo-icon.png" alt="CURATIX.AI" width={32} height={32} className="size-8" />
+            <Image src="/images/curatix-logo-new.png" alt="CURATIX.AI" width={32} height={32} className="size-8" />
             <span>CURATIX.AI</span>
           </div>
 
@@ -1911,13 +1911,7 @@ export default function LandingPage() {
             </Button>
             <div className="p-8">
               <div className="flex items-center gap-3 mb-6">
-                <Image
-                  src="/images/curatix-logo-icon.png"
-                  alt="CURATIX.AI"
-                  width={40}
-                  height={40}
-                  className="size-10"
-                />
+                <Image src="/images/curatix-logo-new.png" alt="CURATIX.AI" width={40} height={40} className="size-10" />
                 <h3 className="text-2xl font-bold text-gray-900">Our Story</h3>
               </div>
               <div className="space-y-4 text-gray-700 leading-relaxed">
@@ -1968,7 +1962,7 @@ export default function LandingPage() {
             {/* column 1 */}
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2 font-bold text-gray-900">
-                <Image src="/images/curatix-logo-icon.png" alt="CURATIX.AI" width={32} height={32} />
+                <Image src="/images/curatix-logo-new.png" alt="CURATIX.AI" width={32} height={32} />
                 CURATIX.AI
               </Link>
               <p className="text-sm text-gray-600">
